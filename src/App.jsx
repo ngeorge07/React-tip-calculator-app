@@ -3,23 +3,20 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 import InputField from "./components/InputField";
+import PercentageBtn from "./components/PercentageBtn";
 
 function App() {
   const [billPrice, setBillPrice] = useState(0);
-  const [resultPerson, setResultPerson] = useState(0);
-  const [totalResult, setTotalResult] = useState(0);
+  const [nrPeople, setNrPeople] = useState(1);
 
   const [tipPercentage, setTipPercentage] = useState(0);
-  const [nrPeople, setNrPeople] = useState(1);
+
+  const [resultPerson, setResultPerson] = useState(0);
+  const [totalResult, setTotalResult] = useState(0);
 
   useEffect(() => {
     if (billPrice >= 0 && nrPeople >= 1) {
       setResultPerson((billPrice * tipPercentage) / 100 / nrPeople);
-    }
-  }, [billPrice, tipPercentage, nrPeople]);
-
-  useEffect(() => {
-    if (billPrice >= 0 && nrPeople >= 1) {
       setTotalResult(billPrice / nrPeople + resultPerson);
     }
   }, [billPrice, tipPercentage, nrPeople, resultPerson]);
@@ -29,7 +26,6 @@ function App() {
       <InputField
         text="Bill"
         id="billInput"
-        name="bill"
         value={billPrice < 0 ? 0 : billPrice}
         setVar={setBillPrice}
       />
@@ -37,38 +33,41 @@ function App() {
       <InputField
         text="Number of People"
         id="nrPeople"
-        name="people"
         value={nrPeople <= 0 ? "" : nrPeople}
         setVar={setNrPeople}
       />
 
-      <input
-        onChange={() => setTipPercentage(5)}
-        checked={tipPercentage === 5}
-        id="5"
-        type="radio"
-        name="amount"
-      />
+      <div>
+        <PercentageBtn
+          id={5}
+          tipPercentage={tipPercentage}
+          setTipPercentage={setTipPercentage}
+        />
 
-      <label htmlFor="5">5%</label>
+        <PercentageBtn
+          id={10}
+          tipPercentage={tipPercentage}
+          setTipPercentage={setTipPercentage}
+        />
 
-      <input
-        onChange={() => setTipPercentage(10)}
-        checked={tipPercentage === 10}
-        id="10"
-        type="radio"
-        name="amount"
-      />
-      <label htmlFor="10">10%</label>
+        <PercentageBtn
+          id={15}
+          tipPercentage={tipPercentage}
+          setTipPercentage={setTipPercentage}
+        />
 
-      <input
-        onChange={() => setTipPercentage(15)}
-        checked={tipPercentage === 15}
-        id="15"
-        type="radio"
-        name="amount"
-      />
-      <label htmlFor="15">15%</label>
+        <PercentageBtn
+          id={25}
+          tipPercentage={tipPercentage}
+          setTipPercentage={setTipPercentage}
+        />
+
+        <PercentageBtn
+          id={50}
+          tipPercentage={tipPercentage}
+          setTipPercentage={setTipPercentage}
+        />
+      </div>
 
       <p className="m-5">{resultPerson.toFixed(2)}</p>
       <p className="m-5">{totalResult.toFixed(2)}</p>
@@ -79,6 +78,7 @@ function App() {
           setNrPeople(1);
           setTipPercentage(0);
         }}
+        disabled={billPrice === 0 || billPrice === "" ? true : false}
       >
         Reset
       </button>

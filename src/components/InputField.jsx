@@ -1,4 +1,4 @@
-export default function InputField({ text, id, name, value, setVar }) {
+export default function InputField({ text, id, value, setVar }) {
   return (
     <div>
       <label htmlFor={id}>{text}</label>
@@ -6,7 +6,7 @@ export default function InputField({ text, id, name, value, setVar }) {
         id={id}
         className="border-solid border-2 border-indigo-600"
         type="number"
-        name={name}
+        name={id}
         onChange={(e) => setVar(e.target.value)}
         onFocus={(e) => e.currentTarget.select()}
         value={value}
