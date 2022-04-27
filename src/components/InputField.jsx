@@ -1,10 +1,10 @@
 export default function InputField({ text, id, value, setVar }) {
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       <label htmlFor={id}>{text}</label>
       <input
         id={id}
-        className="border-solid border-2 border-indigo-600"
+        className="bg-[#c5e4e7] appearance-none text-darkText text-2xl p-1"
         type="number"
         name={id}
         onChange={(e) => setVar(e.target.value)}

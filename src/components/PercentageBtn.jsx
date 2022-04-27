@@ -7,8 +7,11 @@ export default function PercentageBtn({ id, tipPercentage, setTipPercentage }) {
         checked={tipPercentage === id}
         onChange={() => setTipPercentage(id)}
         type="radio"
+        className="appearance-none"
       />
-      <label htmlFor={id}>{id}%</label>
+      <label className="bg-dark text-lightText" htmlFor={id}>
+        {id}%
+      </label>
     </div>
   );
 }

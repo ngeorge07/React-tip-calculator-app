@@ -25,46 +25,57 @@ function App() {
   }, [billPrice, tipPercentage, nrPeople, resultPerson]);
 
   return (
-    <div className="App">
-      <InputField
-        text="Bill"
-        id="billInput"
-        value={billPrice < 0 ? 0 : billPrice}
-        setVar={setBillPrice}
-      />
+    <>
+      <h1 className="font-primaryFont text-3xl text-center my-20 text-[#00494d]">
+        SPLITTER
+      </h1>
 
-      <InputField
-        text="Number of People"
-        id="nrPeople"
-        value={nrPeople <= 0 ? "" : nrPeople}
-        setVar={setNrPeople}
-      />
-
-      <div>
-        {percentages.map((i) => (
-          <PercentageBtn
-            id={i}
-            key={i}
-            tipPercentage={tipPercentage}
-            setTipPercentage={setTipPercentage}
+      <div className="flex gap-6 bg-white max-w-xl m-auto p-4 rounded-xl">
+        <div>
+          <InputField
+            text="Bill $"
+            id="billInput"
+            value={billPrice < 0 ? 0 : billPrice}
+            setVar={setBillPrice}
           />
-        ))}
+
+          <fieldset>
+            <legend>Select Tip %</legend>
+            {percentages.map((i) => (
+              <PercentageBtn
+                id={i}
+                key={i}
+                tipPercentage={tipPercentage}
+                setTipPercentage={setTipPercentage}
+              />
+            ))}
+          </fieldset>
+
+          <InputField
+            text="Number of People"
+            id="nrPeople"
+            value={nrPeople <= 0 ? "" : nrPeople}
+            setVar={setNrPeople}
+          />
+        </div>
+
+        <div>
+          <ResultField result={resultPerson} />
+          <ResultField result={totalResult} />
+
+          <button
+            onClick={() => {
+              setBillPrice(0);
+              setNrPeople(1);
+              setTipPercentage(0);
+            }}
+            disabled={billPrice === 0 || billPrice === "" ? true : false}
+          >
+            Reset
+          </button>
+        </div>
       </div>
-
-      <ResultField result={resultPerson} />
-      <ResultField result={totalResult} />
-
-      <button
-        onClick={() => {
-          setBillPrice(0);
-          setNrPeople(1);
-          setTipPercentage(0);
-        }}
-        disabled={billPrice === 0 || billPrice === "" ? true : false}
-      >
-        Reset
-      </button>
-    </div>
+    </>
   );
 }
 
