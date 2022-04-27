@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import InputField from "./components/InputField";
 import PercentageBtn from "./components/PercentageBtn";
 import ResultField from "./components/ResultField";
+import Footer from "./components/Footer";
 
 function App() {
   const percentages = [0, 5, 10, 15, 25, 50];
@@ -75,6 +76,8 @@ function App() {
           </button>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
