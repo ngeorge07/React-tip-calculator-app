@@ -22,12 +22,9 @@ function App() {
   useEffect(() => {
     if (billPrice >= 0 && nrPeople >= 1) {
       setResultPerson((billPrice * tipPercentage) / 100 / nrPeople);
-
-      billPrice === ""
-        ? setTotalResult(0)
-        : setTotalResult(billPrice / nrPeople + resultPerson);
+      setTotalResult(billPrice / nrPeople + resultPerson);
     }
-  }, [billPrice, tipPercentage, nrPeople]);
+  }, [billPrice, tipPercentage, nrPeople, resultPerson]);
 
   return (
     <>
