@@ -1,3 +1,7 @@
-export default function ResultField({ result }) {
-  return <div>{result.toFixed(2)}</div>;
+export default function ResultField({ text, result }) {
+  return (
+    <div>
+      {text} {result.toFixed(2)}$
+    </div>
+  );
 }

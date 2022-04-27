@@ -60,8 +60,8 @@ function App() {
         </div>
 
         <div>
-          <ResultField result={resultPerson} />
-          <ResultField result={totalResult} />
+          <ResultField text={"Tip Amount / person:"} result={resultPerson} />
+          <ResultField text={"Total / person:"} result={totalResult} />
 
           <button
             onClick={() => {
