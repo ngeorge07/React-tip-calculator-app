@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import InputField from "./components/InputField";
 import PercentageBtn from "./components/PercentageBtn";
 import ResultField from "./components/ResultField";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 function App() {
@@ -21,20 +22,20 @@ function App() {
   useEffect(() => {
     if (billPrice >= 0 && nrPeople >= 1) {
       setResultPerson((billPrice * tipPercentage) / 100 / nrPeople);
-      setTotalResult(billPrice / nrPeople + resultPerson);
+
+      billPrice === ""
+        ? setTotalResult(0)
+        : setTotalResult(billPrice / nrPeople + resultPerson);
     }
   }, [billPrice, tipPercentage, nrPeople]);
 
   return (
-    <main>
-      <h1 className="font-spaceMono text-3xl text-center my-10 text-[#00494d]">
-        SPLITTER
-      </h1>
-
-      <div className="flex flex-col gap-6 bg-white max-w-xs m-auto p-4 rounded-xl">
+    <>
+      <Header />
+      <main className="flex flex-col gap-6 bg-white max-w-xs m-auto p-4 rounded-xl">
         <section className="flex flex-col gap-6">
           <InputField
-            text="Bill $"
+            text="Bill"
             id="billInput"
             value={billPrice < 0 ? 0 : billPrice}
             setVar={setBillPrice}
@@ -79,10 +80,9 @@ function App() {
             Reset
           </button>
         </section>
-      </div>
-
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 export default function PercentageBtn({ id, tipPercentage, setTipPercentage }) {
   return (
-    <div className="font-spaceMono">
+    <div className="font-spaceMono font-bold text-lg">
       <input
         id={id}
         name={`${id}%`}
@@ -10,7 +10,7 @@ export default function PercentageBtn({ id, tipPercentage, setTipPercentage }) {
         className="appearance-none peer"
       />
       <label
-        className="bg-dark peer-checked:bg-lightbg text-lightText inline-block w-full text-center py-1.5 rounded-md cursor-pointer"
+        className="bg-dark peer-checked:bg-lightbg text-lightText inline-block w-full text-center py-2 rounded-md cursor-pointer"
         htmlFor={id}
       >
         {id}%

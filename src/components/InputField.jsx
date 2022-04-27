@@ -4,7 +4,7 @@ export default function InputField({ text, id, value, setVar }) {
       <label htmlFor={id}>{text}</label>
       <input
         id={id}
-        className="bg-[#c5e4e7] appearance-none text-darkText text-2xl p-1 pl-3 rounded-md"
+        className="bg-[#c5e4e7] appearance-none text-dark text-2xl p-1 pl-3 rounded-md"
         type="number"
         name={id}
         onChange={(e) => setVar(e.target.value)}
