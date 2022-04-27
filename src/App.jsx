@@ -2,6 +2,8 @@ import "./App.css";
 
 import { useState, useEffect } from "react";
 
+import InputField from "./components/InputField";
+
 function App() {
   const [billPrice, setBillPrice] = useState(0);
   const [resultPerson, setResultPerson] = useState(0);
@@ -22,27 +24,22 @@ function App() {
     }
   }, [billPrice, tipPercentage, nrPeople, resultPerson]);
 
-  const billPriceChange = (e) => setBillPrice(e.target.value);
-  const nrPeopleChange = (e) => setNrPeople(e.target.value);
-
   return (
     <div className="App">
-      <input
-        className="border-solid border-2 border-indigo-600"
-        type="number"
-        name="tip"
-        onChange={billPriceChange}
-        onFocus={(e) => e.currentTarget.select()}
+      <InputField
+        text="Bill"
+        id="billInput"
+        name="bill"
         value={billPrice < 0 ? 0 : billPrice}
+        setVar={setBillPrice}
       />
 
-      <input
-        className="border-solid border-2 border-indigo-600"
-        type="number"
+      <InputField
+        text="Number of People"
+        id="nrPeople"
         name="people"
-        onChange={nrPeopleChange}
-        onFocus={(e) => e.currentTarget.select()}
         value={nrPeople <= 0 ? "" : nrPeople}
+        setVar={setNrPeople}
       />
 
       <input
@@ -52,6 +49,7 @@ function App() {
         type="radio"
         name="amount"
       />
+
       <label htmlFor="5">5%</label>
 
       <input
