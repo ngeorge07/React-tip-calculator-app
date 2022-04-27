@@ -23,16 +23,16 @@ function App() {
       setResultPerson((billPrice * tipPercentage) / 100 / nrPeople);
       setTotalResult(billPrice / nrPeople + resultPerson);
     }
-  }, [billPrice, tipPercentage, nrPeople, resultPerson]);
+  }, [billPrice, tipPercentage, nrPeople]);
 
   return (
-    <>
-      <h1 className="font-primaryFont text-3xl text-center my-20 text-[#00494d]">
+    <main>
+      <h1 className="font-spaceMono text-3xl text-center my-10 text-[#00494d]">
         SPLITTER
       </h1>
 
-      <div className="flex gap-6 bg-white max-w-xl m-auto p-4 rounded-xl">
-        <div>
+      <div className="flex flex-col gap-6 bg-white max-w-xs m-auto p-4 rounded-xl">
+        <section className="flex flex-col gap-6">
           <InputField
             text="Bill $"
             id="billInput"
@@ -41,15 +41,17 @@ function App() {
           />
 
           <fieldset>
-            <legend>Select Tip %</legend>
-            {percentages.map((i) => (
-              <PercentageBtn
-                id={i}
-                key={i}
-                tipPercentage={tipPercentage}
-                setTipPercentage={setTipPercentage}
-              />
-            ))}
+            <legend className="font-spaceMono">Select Tip %</legend>
+            <div className="grid grid-cols-2 gap-3 mt-2">
+              {percentages.map((i) => (
+                <PercentageBtn
+                  id={i}
+                  key={i}
+                  tipPercentage={tipPercentage}
+                  setTipPercentage={setTipPercentage}
+                />
+              ))}
+            </div>
           </fieldset>
 
           <InputField
@@ -58,27 +60,29 @@ function App() {
             value={nrPeople <= 0 ? "" : nrPeople}
             setVar={setNrPeople}
           />
-        </div>
+        </section>
 
-        <div>
-          <ResultField text={"Tip Amount / person:"} result={resultPerson} />
-          <ResultField text={"Total / person:"} result={totalResult} />
+        <section className="bg-dark text-lightText rounded-xl p-5 flex flex-col gap-5">
+          <ResultField text={"Tip Amount  /person"} result={resultPerson} />
+          <ResultField text={"Total Amount  /person"} result={totalResult} />
 
           <button
             onClick={() => {
               setBillPrice(0);
               setNrPeople(1);
               setTipPercentage(0);
+              setResultPerson(0);
             }}
             disabled={billPrice === 0 || billPrice === "" ? true : false}
+            className="w-full text-center text-dark text-xl bg-lightbg rounded-md py-2 font-spaceMono mt-5 font-bold"
           >
             Reset
           </button>
-        </div>
+        </section>
       </div>
 
       <Footer />
-    </>
+    </main>
   );
 }
 
