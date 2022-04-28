@@ -72,7 +72,7 @@ function App() {
               setResultPerson(0);
             }}
             disabled={billPrice === 0 || billPrice === "" ? true : false}
-            className="w-full text-center text-dark text-xl bg-lightbg rounded-md py-2 font-spaceMono mt-5 font-bold"
+            className="w-full text-center text-dark text-xl bg-lightbg rounded-md py-2 font-spaceMono mt-5 font-bold disabled:opacity-50"
           >
             Reset
           </button>
